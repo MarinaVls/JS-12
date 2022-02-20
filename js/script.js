@@ -17,9 +17,9 @@ class Contacts {
         this.contactsData = [];
     }
 
-    add({name, email, address, phone}) {
+    add({id, name, email, address, phone}) {
         const user = new User({
-            id: Date.now() + 'unique', 
+            id, 
             name, 
             email,
             address,
@@ -119,6 +119,7 @@ class ContactsApp extends Contacts {
         this.addButton.addEventListener('click', () => {
 
             this.onAdd({
+                id: Date.now() + 'unique',
                 name: this.inputName.value,
                 email: this.inputEmail.value,
                 phone: this.inputPhone.value,
@@ -285,7 +286,7 @@ window.addEventListener('load', () => {
     if (contacts.storage != null) {        
         const newContactsData = JSON.parse(contacts.storage);
 
-        newContactsData.forEach( item => {
+        newContactsData.forEach(item => {
             contacts.add(item.date);
         })
         contacts.onShow();
